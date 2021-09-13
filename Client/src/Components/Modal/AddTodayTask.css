@@ -1,0 +1,33 @@
+.add_today_task_modal .modal-dialog .modal-body input {
+  width: 100%;
+  border: none;
+  padding: 5px;
+  margin: 5px 2px;
+  font-size: 14px;
+  outline: none;
+}
+.add_today_task_modal .modal-dialog .modal-footer {
+  justify-content: flex-start;
+}
+.add_today_task_modal .modal-dialog .modal-body .set_priority .dropdown .btn-success {
+    color: black;
+    background-color: white;
+    border-color: white;
+    outline: none;
+}
+.add_today_task_modal .modal-dialog .modal-body .set_priority .dropdown .dropdown-toggle::after {
+    content: none;
+}
+
+.add_today_task_modal .priority_1{
+    color: red;
+
+}
+.add_today_task_modal .priority_2{
+    color: orange;
+
+}
+.add_today_task_modal .priority_3{
+    color: blue;
+
+}

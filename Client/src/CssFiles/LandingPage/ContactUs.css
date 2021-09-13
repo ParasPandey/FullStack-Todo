@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap");
+
+p {
+  margin: 0;
+}
+.contact {
+  margin-top: 3rem;
+}
+.contact .contact_heading {
+  font-family: "Caveat", cursive;
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 800;
+}
+.contact .contact_para {
+  text-align: center;
+  font-size: 1.5rem;
+}
+.contact form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  padding: 2.5rem 1rem;
+  margin: 0 auto;
+}
+.contact form .form-label-group {
+  display: flex;
+  margin-bottom: 20px;
+}
+.contact form .form-label-group .each_item {
+  width: 100%;
+  margin: 0 1rem;
+}
+/* .contact form .form-label-group .each_item.containe_2_fields{
+    width: 100%;
+    margin: 0 1rem;
+} */
+.contact form button {
+  width: 200px;
+  border-radius: 20px;
+  margin: 0 1rem;
+  padding: 8px 0;
+}
+
+/* Media Query */
+@media only screen and (max-width: 900px) {
+  .reviews .left_side_box .card h3 {
+    font-size: 1.5rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .contact form .form-label-group.containe_2_fields {
+    flex-direction: column;
+    width: 100%;
+  }
+  .contact form .form-label-group.containe_2_fields .each_item {
+    margin-bottom: 1rem;
+  }
+  .contact form .form-label-group .each_item {
+    margin: 0;
+  }
+  .contact .contact_heading {
+    font-size: 2.5rem;
+  }
+  .contact .contact_para {
+    text-align: center;
+    font-size: 1.3rem;
+  }
+}
+@media only screen and (max-width: 500px) {
+  /* .contact form .form-label-group.containe_2_fields .each_item{
+    width: 90%;
+  } */
+}
+@media only screen and (max-width: 400px) {
+  .reviews .left_side_box .review_user {
+    font-size: 0.9rem;
+  }
+}

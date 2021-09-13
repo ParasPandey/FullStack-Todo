@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Philosopher&display=swap");
+.reviews {
+  margin-top: 5rem;
+  font-family: "Philosopher", sans-serif;
+  /* overflow-x: scroll */
+}
+.reviews .card {
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 15px 18px 14px -7px rgba(0, 0, 0, 0.29);
+  -webkit-box-shadow: 15px 18px 14px -7px rgba(0, 0, 0, 0.29);
+}
+.reviews .left_side_box {
+  padding: 2rem;
+}
+.reviews .left_side_box .review_user {
+  margin-top: 1.5rem;
+}
+.reviews .user_image {
+  display: flex;
+  justify-content: center;
+}
+.reviews .user_image img {
+  width: 70%;
+}
+.reviews .each_review {
+  display: flex;
+}
+.reviews .carousel .carousel-control-prev,
+.carousel-control-next {
+  display: none;
+}
+
+/* Media Query */
+@media only screen and (max-width: 900px) {
+  .reviews .left_side_box .card h3 {
+    font-size: 1.5rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .reviews .left_side_box .card h3 {
+    font-size: 1.3rem;
+  }
+  .reviews .left_side_box .MuiCardContent-root:last-child {
+    padding-bottom: 0;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .reviews .left_side_box .card h3 {
+    font-size: 1.2rem;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .reviews .left_side_box .review_user {
+    font-size: 0.9rem;
+  }
+}

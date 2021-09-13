@@ -1,0 +1,33 @@
+.main_heading{
+    margin: 3.2rem 0;
+    display:flex;
+    justify-content: center;
+}
+.main_heading h1{
+    text-align: center;
+    width: 550px;
+    font-size:2.4rem;
+    color: grey;
+}
+
+@media only screen and (max-width: 900px) {
+    .main_heading h1{
+        font-size:2rem;
+    }
+  }
+@media only screen and (max-width: 768px) {
+    .main_heading h1{
+        font-size:1.8rem;
+        padding: 10px;
+    }
+  }
+@media only screen and (max-width: 500px) {
+    .main_heading h1{
+        font-size:1.6rem;
+    }
+  }
+@media only screen and (max-width: 300px) {
+    .main_heading h1{
+        font-size:1.4rem;
+    }
+  }
