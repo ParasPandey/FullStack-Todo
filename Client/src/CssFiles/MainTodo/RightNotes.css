@@ -1,0 +1,14 @@
+.right_notes{
+    width: 100%;
+    padding: 1rem 5rem;
+}
+/* .right_notes h1{
+    padding-left: 3rem;
+} */
+
+@media only screen and (max-width: 900px) {
+    .right_notes{
+        width: 100%;
+        padding: 1rem 1rem;
+    }
+  }

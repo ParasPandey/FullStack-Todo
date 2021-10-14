@@ -1,0 +1,37 @@
+.notes_container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  flex-flow: row wrap;
+}
+.notes_container .each_note_box {
+  padding: 1rem;
+  border: 1px solid whitesmoke;
+  margin: 10px;
+  width: 230px;
+  border-radius: 10px;
+  height: fit-content;
+  
+}
+.notes_container .each_note_box .note_data {
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+.notes_container .each_note_box .note_data .note_title {
+  text-decoration: underline;
+}
+.notes_container .each_note_box .note_data .note_message {
+  padding: 5px;
+  margin-top: 10px;
+}
+.notes_container .each_note_box .options_box {
+  border-top: 1px solid whitesmoke;
+}
+.notes_container .each_note_box .options_box .MuiIconButton-root {
+  padding: 5px;
+}
+@media only screen and (max-width: 900px) {
+  .notes_container {
+    justify-content: center;
+  }
+}

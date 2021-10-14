@@ -27,23 +27,12 @@ const UserSchema = mongoose.Schema({
       ref: "Todo",
     },
   ],
-  // todoList: [
-  //   {
-  //     text: {
-  //       type: String,
-  //       required: [true, "List must have a text"],
-  //     },
-  //     isDone: {
-  //       type: Boolean,
-  //       required: [true, "List must have isDone Field"],
-  //       default: false,
-  //     },
-  //     date: {
-  //       type: Date,
-  //       default: Date.now,
-  //     },
-  //   },
-  // ],
+  Notes: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "Notes",
+    },
+  ],
 });
 
 // Middleware to hashed password

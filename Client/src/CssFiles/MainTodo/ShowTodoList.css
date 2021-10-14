@@ -1,0 +1,75 @@
+.list_container {
+  padding: 0 3.5rem;
+  margin-top: 1rem;
+}
+.list_container .each_todo_item {
+  padding: 5px;
+  border-bottom: 1px solid whitesmoke;
+  align-items: center;
+  cursor: pointer;
+}
+.list_container .each_todo_item .todo_message {
+  display: flex;
+  align-items: center;
+}
+.list_container .each_todo_item .todo_options {
+  display: flex;
+  justify-content: end;
+}
+.list_container .each_todo_item .todo_options .options_task_completed {
+  cursor: not-allowed;
+  pointer-events: none;
+
+  color: #c0c0c0;
+  background-color: #ffffff;
+}
+.list_container .each_todo_item .todo_message .message_box {
+  margin-left: 10px;
+  width: 85%;
+  overflow: hidden;
+}
+.list_container .each_todo_item .todo_message .message_box p {
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.list_container .each_todo_item .todo_message .message_box .description {
+  font-size: 13px;
+}
+.list_container .each_todo_item .todo_message .message_box .task_completed {
+  text-decoration: line-through;
+}
+
+.todo_options .priority_1 {
+  color: red;
+}
+.todo_options .priority_2 {
+  color: orange;
+}
+.todo_options .priority_3 {
+  color: blue;
+}
+
+@media only screen and (max-width: 1000px) {
+  .list_container {
+    padding: 0 1rem;
+  }
+  .list_container .each_todo_item .todo_options button {
+    padding: 10px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .list_container .each_todo_item {
+    flex-direction: column;
+    align-items: baseline;
+  }
+  .list_container .each_todo_item .todo_message {
+    width: 100%;
+  }
+  .list_container .each_todo_item .todo_options {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 5px;
+    padding-left: 40px;
+  }
+}

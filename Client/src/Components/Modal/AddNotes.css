@@ -1,0 +1,26 @@
+.add_notes_modal .modal-dialog .modal-body input {
+    width: 100%;
+    border: none;
+    padding: 5px;
+    margin: 5px 2px;
+    font-size: 14px;
+    outline: none;
+  }
+  .add_notes_modal .modal-dialog .modal-footer {
+    justify-content: flex-start;
+  }
+  .add_notes_modal .modal-dialog .modal-body .set_priority .dropdown .btn-success {
+      color: black;
+      background-color: white;
+      border-color: white;
+      outline: none;
+  }
+  .add_notes_modal .modal-dialog .modal-body .set_priority .dropdown .dropdown-toggle::after {
+      content: none;
+  }
+  .add_notes_modal textarea {
+      width: 100%;
+      border: none;
+      outline: none;
+      padding: 5px;
+  }

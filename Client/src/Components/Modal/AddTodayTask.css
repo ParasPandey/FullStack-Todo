@@ -31,3 +31,6 @@
     color: blue;
 
 }
+.set_priority .today_future .today_upcoming_radio_buttons{
+   flex-direction: row;
+}

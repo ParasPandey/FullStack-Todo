@@ -4,17 +4,19 @@ import HomePage from "./Components/LandingPage/HomePage";
 import SignIn from "./Components/LandingPage/SignIn";
 import SignUp from "./Components/LandingPage/SignUp";
 import StartApp from "./Components/MainTodo/StartApp";
-import { login, selectuser, setToken } from "./Redux/UserSlice";
+import { login, selectuser, setToken, setShowTodo } from "./Redux/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const user = useSelector(selectuser);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("setUSer");
     if (localStorage.getItem("token")) {
       dispatch(login(JSON.parse(localStorage.getItem("user"))));
       dispatch(setToken({ token: JSON.parse(localStorage.getItem("token")) }));
+      dispatch(
+        setShowTodo({ showTodo: JSON.parse(localStorage.getItem("showTodo")) })
+      );
     }
   }, []);
 

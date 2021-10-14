@@ -1,0 +1,12 @@
+.right_optionBox{
+    width: 80%;
+}
+.right_optionBox_full{
+    width: 100%;
+}
+@media only screen and (max-width: 700px) {
+    .right_optionBox{
+        width: 100%;
+    }
+    
+  }

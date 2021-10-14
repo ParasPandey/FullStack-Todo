@@ -1,39 +1,42 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
-import CloseIcon from "@material-ui/icons/Close";
 import "./AddTodayTask.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import FlagIcon from "@material-ui/icons/Flag";
 import Button from "@material-ui/core/Button";
 import { todoAxios } from "../../AxiosConfig";
-import { selectuser, addToTodoList } from "./../../Redux/UserSlice";
+import {
+  selectTodoList,
+  initializeTodoList,
+} from "./../../Redux/UserSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
 
-const localizer = momentLocalizer(moment);
-
-const AddTodayTask = ({ show, handleClose }) => {
+const UpdateTodayTodo = ({ show, handleClose, todoId }) => {
   const [priority, setPriority] = useState(4);
-  const [today, setToday] = useState(true);
+  const [todo, setTodo] = useState(null);
   const todo_message = useRef();
   const todo_description = useRef();
-  const user = useSelector(selectuser);
   const dispatch = useDispatch();
-  const handleRadioChange = (e) => {
-    setToday(!today);
-  };
-  const events = [
-    {
-      start: moment().toDate(),
-      end: moment().add(0, "days").toDate(),
-    },
-  ];
+  const selectTodo = useSelector(selectTodoList);
+
+  useEffect(() => {
+    const fetchTodo = async () => {
+      const res = await todoAxios({
+        method: "get",
+        url: `/getTodo/${todoId}`,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-type": "Application/json",
+          "Access-Control-Allow-Credentials": true,
+          Secure: true,
+          HttpOnly: true,
+        },
+      });
+      setTodo(res.data.todo);
+      setPriority(res.data.todo.priority);
+    };
+    fetchTodo();
+  }, [todoId]);
 
   const changePriority = (e) => {
     if (e.target.id === "1") {
@@ -47,14 +50,14 @@ const AddTodayTask = ({ show, handleClose }) => {
     }
   };
 
-  const addTodo = async (e) => {
+  const editTodoList = async (e) => {
     e.preventDefault();
+
     if (todo_message.current.value) {
       const res = await todoAxios({
-        method: "post",
-        url: "/addTodo",
+        method: "patch",
+        url: `/updateTodo/${todoId}`,
         data: {
-          userId: user.id,
           todo: todo_message.current.value,
           description: todo_description.current.value,
           priority,
@@ -67,18 +70,21 @@ const AddTodayTask = ({ show, handleClose }) => {
           HttpOnly: true,
         },
       });
+      const newArray = selectTodo.slice();
+      newArray.forEach((element, index) => {
+        if (element._id === res.data.updatedTodo._id) {
+          newArray[index] = res.data.updatedTodo;
+        }
+      });
+
       dispatch(
-        addToTodoList({
-          newTodo: res.data.data.addTodo,
+        initializeTodoList({
+          todo: newArray,
         })
       );
-      console.log(res.data);
     }
     handleClose();
   };
-  // const setCalender = (e)=>{
-  //   console.log(e)
-  // }
   return (
     <Modal
       show={show}
@@ -88,11 +94,19 @@ const AddTodayTask = ({ show, handleClose }) => {
       className="add_today_task_modal"
     >
       <Modal.Header>
-        <Modal.Title>Add a Task</Modal.Title>
+        <Modal.Title>Update a Task</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <input placeholder="eg. Get Burger at 6 #Family" ref={todo_message} />
-        <input placeholder="Description" ref={todo_description} />
+        <input
+          placeholder="eg. Get Burger at 6 #Family"
+          ref={todo_message}
+          defaultValue={todo?.todo}
+        />
+        <input
+          placeholder="Description"
+          ref={todo_description}
+          defaultValue={todo?.description}
+        />
         <div className="set_priority">
           <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -130,51 +144,15 @@ const AddTodayTask = ({ show, handleClose }) => {
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <div className="today_future">
-            <FormControl component="fieldset">
-              <RadioGroup
-                aria-label="gender"
-                name="gender1"
-                className="today_upcoming_radio_buttons"
-                value={today}
-                onChange={handleRadioChange}
-              >
-                <FormControlLabel
-                  value="Today"
-                  control={<Radio />}
-                  label="Today"
-                  checked={today}
-                />
-                <FormControlLabel
-                  value="Upcoming"
-                  control={<Radio />}
-                  label="Upcoming"
-                  checked={!today}
-                />
-              </RadioGroup>
-            </FormControl>
-          </div>
         </div>
-        {/* {!today && (
-          <Calendar
-            localizer={localizer}
-            defaultDate={new Date()}
-            defaultView="month"
-            events={events}
-            startAccessor="start"
-            endAccessor="end"
-            style={{ height: 300 }}
-            onClick={setCalender}
-          />
-        )} */}
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="contained" color="primary" onClick={addTodo}>
-          Add a task
+        <Button variant="contained" color="primary" onClick={editTodoList}>
+          Update a task
         </Button>
       </Modal.Footer>
     </Modal>
   );
 };
 
-export default AddTodayTask;
+export default UpdateTodayTodo;
